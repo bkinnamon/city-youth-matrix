@@ -1,3 +1,125 @@
 .main-logo {
   width: 200px;
 }
+
+body {
+	font-family: Arial;
+	font-size: 26px;
+}
+
+.login-form {
+	width: 45%;
+	max-width: 500px;
+	margin: auto;
+	background: #e6e6e6;
+}
+
+.img-container {
+	text-align: center;
+	margin: 100px;
+}
+
+img {
+	width: 45%;
+}
+
+input {
+	width: 100%;
+	min-width: 200px;
+	padding: 20px;
+	margin: 10px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	border-radius: 10px;
+}
+
+.log-in-button {
+	background-color: #be1e48;
+	color: white;
+	padding: 14px 20px;
+	margin: 25px 0;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	text-transform: uppercase;
+	border-radius: 10px;
+	font-size: 26px;
+}
+
+.log-in-button:hover {
+	opacity: 0.8;
+}
+
+.container {
+	padding: 40px;
+}
+
+/*Events Styles*/
+.header-logo {
+	width: 45%;
+	margin: 15px;
+}
+
+.event-page {
+	width: 45%;
+	max-width: 700px;
+	margin: auto;
+}
+
+.event-list {
+	background: #e6e6e6;
+}
+
+h2 {
+	border-bottom: solid 1px black;
+	margin: 0 15px;
+	padding: 15px 0 5px 0;
+}
+
+.event {
+	border-bottom: solid 1px black;
+	margin: 15px;
+}
+
+
+h3 {
+	color: #be1e48;
+	font-weight: 500;
+	margin-bottom: 0;
+}
+
+span {
+	float: right;
+}
+
+.event-details {
+	font-style: italic;
+	margin-top: 5px;
+}
+
+.footer-button {
+	width:33.3%;
+	background: #fbfbf8;
+	height: 60px;
+	font-size: 25px;
+	font-weight: 700;
+	margin-top: 100px;
+}
+
+.button-highlight {
+	background: #a8a9ad;
+}
+
+
+@media only screen and (max-width: 1250px) {
+	.login-form, .event-page, img {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	body {
+		font-size: .99rem;
+	}
+}
