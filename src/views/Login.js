@@ -23,7 +23,7 @@ function Login() {
 				</div>
 
 				<div>
-					<button type = "submit" class="log-in-button">Log In</button>
+					<button type = "submit" className="log-in-button">Log In</button>
 				</div>
 			</div>
 		</div>

@@ -41,7 +41,7 @@ function Events() {
 
 
 	return (
-		<div class="event-page">
+		<div className="event-page">
 			<div>
 				<img src={headerLogo} alt = "City Youth Matrix logo" className = "header-logo"/>
 			</div>
@@ -52,6 +52,7 @@ function Events() {
 				<div>
 					{events.map(event=>
 						<Card
+							key={event.name}
 							name = {event.name}
 							date = {event.date}
 							location = {event.location}
@@ -60,9 +61,9 @@ function Events() {
 						)}
 				</div>
 
-				<button class="footer-button button-highlight">Events</button>
-				<button class="footer-button">Trips</button>
-				<button class="footer-button">Profile</button>
+				<button className="footer-button button-highlight">Events</button>
+				<button className="footer-button">Trips</button>
+				<button className="footer-button">Profile</button>
 			</div>
 		</div>
 		)
