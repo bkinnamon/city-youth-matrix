@@ -26,7 +26,7 @@ async function callApi(method, path, body) {
   const fetchOptions = {};
   fetchOptions.method = method;
   fetchOptions.headers = getHeaders();
-  if (body) fetchOptions.body = JSON.stringify(body);
+  if (body) fetchOptions.body = typeof body === "string" ? body : JSON.stringify(body);
 
   const response = await fetch(API_URL + path, fetchOptions);
   const data = await response.json();
