@@ -1,39 +1,62 @@
-import React from 'react'
-
+import React, {useState} from 'react'
+import { Redirect } from 'react-router';
+import { connect } from 'react-redux';
+import { setUser } from '../store/actions';
+import API from '../helpers/api';
 import logo from '../CYM_logo_v1.svg'
 import '../App.css'
 
-function Login() {
-	return (
-	<div>
-		<div className = "img-container">
-			<img src={logo} alt = "City Youth Matrix logo" className = "main-logo"/>
-		</div>
+function Login({user, setUser}) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  
+  if (user.id) {
+    return <Redirect to="/events" />;
+  }
 
-		<div className = "login-form" >
-			<div className = "container">
-				<div>
-					<label>Email</label>
-					<input type = "text" name = "email" required/>
-				</div>
+  async function doLogin(e) {
+    e.preventDefault();
+    const data = await API.login(username, password);
+    setUser(data.user);
+  }
 
-				<div>
-					<label>Password</label>
-					<input type = "text" name = "password" required/>
-				</div>
+  return (
+    <div>
+      <div className="img-container">
+        <img src={logo} alt="City Youth Matrix logo" className="main-logo"/>
+      </div>
 
-				<div>
-					<button type = "submit" className="log-in-button">Log In</button>
-				</div>
-			</div>
-		</div>
+      <form onSubmit={doLogin} className="login-form" >
+        <div className="container">
+          <div>
+            <label>Email</label>
+            <input type="text" name="email" value={username} onChange={e => setUsername(e.target.value)} required/>
+          </div>
 
-		
-	</div>
+          <div>
+            <label>Password</label>
+            <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} required/>
+          </div>
 
-	
-
-		)
+          <div>
+            <button type="submit" className="log-in-button">Log In</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  )
 }
 
-export default Login
+function mapStateToProps(state) {
+  return { user: state.user };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setUser(user) {
+      dispatch(setUser(user));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute';
 
 import ApiExample from './ApiExample'
 import Login from './views/Login.js'
@@ -16,9 +17,9 @@ function App() {
         <Link to="/api">API Example</Link>
       </nav>
       <Switch>
-        <Route path="/events">
+        <ProtectedRoute path="/events">
           <Events />
-        </Route>
+        </ProtectedRoute>
         <Route path="/api">
           <ApiExample />
         </Route>
