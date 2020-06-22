@@ -9,6 +9,13 @@ import '../App.css'
 function Login({user, setUser}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  // Check if we're already logged in with a token
+  API.login().then(data => {
+    if (data.user) {
+      setUser(data.user);
+    }
+  });
   
   if (user.id) {
     return <Redirect to="/events" />;
