@@ -1,6 +1,6 @@
 const API_URL = 'https://cym.brettk.dev';
 
-let token = null;
+let token = window.localStorage?.getItem('token') || null;
 
 /**
  * Gets the headers for the API call.
