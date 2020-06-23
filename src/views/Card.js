@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const Card = ({ name, partner, start, end }) => {
+const Card = ({ name, partner, start, end, id }) => {
 	const startTime = new Date()
 	startTime.setTime(start)
 	const endTime = new Date()
@@ -41,7 +42,7 @@ const Card = ({ name, partner, start, end }) => {
 
 	return (
 		<div className="event">
-			<h3 className="event-header">{name}<span>{formatDate()}</span></h3>
+			<h3 className="event-header"><Link to={`/events/${id}`}>{name}</Link><span>{formatDate()}</span></h3>
 			<p className="event-details">{partner}<span>{formatTime()}</span></p>
 		</div>
 

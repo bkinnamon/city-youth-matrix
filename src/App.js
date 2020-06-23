@@ -1,10 +1,10 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { setUser } from './store/actions';
-import ProtectedRoute from './components/ProtectedRoute';
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { setUser } from './store/actions'
+import ProtectedRoute from './components/ProtectedRoute'
 import ApiExample from './ApiExample'
-import Request from './views/Request';
+import Request from './views/Request'
 import Login from './views/Login'
 import Logout from './views/Logout'
 import Events from './views/Events'
@@ -39,15 +39,15 @@ function App({ setUser }) {
 }
 
 function mapStateToProps(state) {
-  return { user: state.user };
+  return { user: state.user }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     setUser(user) {
-      dispatch(setUser(user));
+      dispatch(setUser(user))
     },
-  };
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)

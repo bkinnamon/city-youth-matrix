@@ -83,10 +83,15 @@ h2 {
 }
 
 
-.event-header {
+.event-header, .event-header a {
 	color: #be1e48;
 	font-weight: 500;
 	margin: 0;
+	text-decoration: none;
+}
+
+.event-header a:hover {
+	text-decoration: underline;
 }
 
 span {

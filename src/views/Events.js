@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import API from '../helpers/api';
+import API from '../helpers/api'
 import headerLogo from '../CYM_logo_v2.svg'
-import NavBar from '../components/NavBar';
+import NavBar from '../components/NavBar'
 import Card from './Card'
 
 class Events extends Component {
@@ -14,8 +14,8 @@ class Events extends Component {
 
   componentDidMount() {
     API.allEvents().then(data => {
-      this.setState(data);
-    });
+      this.setState(data)
+    })
   }
 
   render() {
@@ -32,13 +32,13 @@ class Events extends Component {
 
           <div>
             {this.state.events.map(event =>
-            <Card
-              key={event.id}
-              name={event.name}
-              start={event.start}
-              partner={event.partner}
-              end={event.end}
-            />
+              <Card
+                id={event.id}
+                name={event.name}
+                start={event.start}
+                partner={event.partner}
+                end={event.end}
+              />
             )}
           </div>
 
