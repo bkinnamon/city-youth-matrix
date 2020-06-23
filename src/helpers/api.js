@@ -51,6 +51,17 @@ async function login (username, password) {
 }
 
 /**
+ * Sends a login request with a stored token if one is found.
+ * @return {object} The results from the API.
+ */
+async function tokenLogin () {
+  token = window.localStorage?.getItem('token') || null
+  if (!token) return null;
+  const data = await callApi('GET', '/token');
+  return data;
+}
+
+/**
  * Removes the auth token from storage.
  */
 function logout () {
@@ -112,6 +123,7 @@ async function deleteEvent(id) {
 const API = {
   callApi,
   login,
+  tokenLogin,
   logout,
   allEvents,
   event,

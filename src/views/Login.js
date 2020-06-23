@@ -11,8 +11,8 @@ function Login({user, setUser}) {
   const [password, setPassword] = useState('');
 
   // Check if we're already logged in with a token
-  API.login().then(data => {
-    if (data.user) {
+  API.tokenLogin().then(data => {
+    if (data?.user) {
       setUser(data.user);
     }
   });
@@ -37,7 +37,13 @@ function Login({user, setUser}) {
         <div className="container">
           <div>
             <label>Email</label>
-            <input type="text" name="email" value={username} onChange={e => setUsername(e.target.value)} required/>
+            <input
+              type="text"
+              name="email"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+              required
+            />
           </div>
 
           <div>
