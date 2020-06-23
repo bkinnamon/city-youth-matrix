@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { SET_USER } from './actions';
 
-function user(state = {}, action) {
+function user(state = null, action) {
   switch(action.type) {
     case SET_USER:
       return action.user;

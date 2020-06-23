@@ -5,6 +5,7 @@ import { setUser } from './store/actions';
 import ProtectedRoute from './components/ProtectedRoute';
 import ApiExample from './ApiExample'
 import Login from './views/Login.js'
+import Logout from './views/Logout.js'
 import Events from './views/Events.js'
 
 import './App.css'
@@ -21,6 +22,9 @@ function App({ setUser }) {
         </ProtectedRoute>
         <Route path="/api">
           <ApiExample />
+        </Route>
+        <Route path="/logout">
+          <Logout />
         </Route>
         <Route path="/">
           <Login />

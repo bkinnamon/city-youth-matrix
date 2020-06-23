@@ -17,7 +17,7 @@ function Login({user, setUser}) {
     }
   });
   
-  if (user.id) {
+  if (user?.id) {
     return <Redirect to="/events" />;
   }
 
