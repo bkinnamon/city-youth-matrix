@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import API from '../helpers/api';
 import headerLogo from '../CYM_logo_v2.svg'
+import NavBar from '../components/NavBar';
 import Card from './Card'
 
 class Events extends Component {
@@ -15,48 +16,7 @@ class Events extends Component {
     API.allEvents().then(data => {
       this.setState(data);
     });
-    //fetch('https://cym.brettk.dev/events')
-      //.then(response => response.json())
-      //.then(data => {
-        //this.setState(data)
-        //console.log(data)
-      //})
   }
-
-  // const events = [
-  // 	{
-  // 		name: 'Lorem Ipsum Dolar',
-  // 		date: 'June 29',
-  // 		location: 'YMCA of Frederick County',
-  // 		time: '3:00-4:30 pm'
-  // 	},
-  // 	{
-  // 		name: 'Praesent Non Nisa Quam',
-  // 		date: 'June 30',
-  // 		location: 'Id Faucibus Mi',
-  // 		time: '5:45-8:00 pm'
-  // 	},
-  // 	{
-  // 		name: 'Sed Semper',
-  // 		date: 'July 2',
-  // 		location: 'Nunc Non Libero, Donec Lacinia',
-  // 		time: '4:00-6:00 pm'
-  // 	},
-  // 	{
-  // 		name: 'Justo Sit Amet Eleifend',
-  // 		date: 'July 2',
-  // 		location: 'Tristique At Ultricies Eget',
-  // 		time: '1:30-3:30 pm'
-  // 	},
-  // 	{
-  // 		name: 'Lacinia Arcu Sapien',
-  // 		date: 'July 6',
-  // 		location: 'Nullam Auctor',
-  // 		time: '3:15-4:15 pm'
-  // 	},
-
-  // ]
-
 
   render() {
     return (
@@ -64,6 +24,8 @@ class Events extends Component {
         <div>
           <img src={headerLogo} alt="City Youth Matrix logo" className="header-logo" />
         </div>
+
+        <NavBar />
 
         <div className="event-list">
           <h2>Upcoming Events</h2>

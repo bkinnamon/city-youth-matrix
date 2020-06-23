@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Redirect } from 'react-router';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setUser } from '../store/actions';
 import API from '../helpers/api';
@@ -11,13 +11,13 @@ function Login({user, setUser}) {
   const [password, setPassword] = useState('');
 
   // Check if we're already logged in with a token
-  API.login().then(data => {
-    if (data.user) {
+  API.tokenLogin().then(data => {
+    if (data?.user) {
       setUser(data.user);
     }
   });
   
-  if (user.id) {
+  if (user?.id) {
     return <Redirect to="/events" />;
   }
 
@@ -37,7 +37,13 @@ function Login({user, setUser}) {
         <div className="container">
           <div>
             <label>Email</label>
-            <input type="text" name="email" value={username} onChange={e => setUsername(e.target.value)} required/>
+            <input
+              type="text"
+              name="email"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+              required
+            />
           </div>
 
           <div>
@@ -48,6 +54,7 @@ function Login({user, setUser}) {
           <div>
             <button type="submit" className="log-in-button">Log In</button>
           </div>
+          <Link to="/request">Request an account.</Link>
         </div>
       </form>
     </div>
