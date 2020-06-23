@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { setUser } from './store/actions';
 import ProtectedRoute from './components/ProtectedRoute';
 import ApiExample from './ApiExample'
-import Login from './views/Login.js'
-import Logout from './views/Logout.js'
-import Events from './views/Events.js'
+import Request from './views/Request';
+import Login from './views/Login'
+import Logout from './views/Logout'
+import Events from './views/Events'
 
 import './App.css'
 
@@ -25,6 +26,9 @@ function App({ setUser }) {
         </Route>
         <Route path="/logout">
           <Logout />
+        </Route>
+        <Route path="/request">
+          <Request />
         </Route>
         <Route path="/">
           <Login />
