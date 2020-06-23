@@ -8,6 +8,7 @@ import Request from './views/Request';
 import Login from './views/Login'
 import Logout from './views/Logout'
 import Events from './views/Events'
+import Users from './views/Users';
 
 import './App.css'
 
@@ -18,7 +19,7 @@ function App({ setUser }) {
         <Route path="/events/:id">
           <ApiExample />
         </Route>
-        <ProtectedRoute path="/events">
+        <ProtectedRoute roles={['dispatcher', 'driver', 'family']} path="/events">
           <Events />
         </ProtectedRoute>
         <Route path="/api">
@@ -30,6 +31,9 @@ function App({ setUser }) {
         <Route path="/request">
           <Request />
         </Route>
+        <ProtectedRoute roles={['dispatcher']} path="/users">
+          <Users />
+        </ProtectedRoute>
         <Route path="/">
           <Login />
         </Route>
