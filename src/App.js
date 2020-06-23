@@ -9,6 +9,7 @@ import Login from './views/Login'
 import Logout from './views/Logout'
 import Events from './views/Events'
 import Users from './views/Users';
+import User from './views/User';
 
 import './App.css'
 
@@ -31,6 +32,9 @@ function App({ setUser }) {
         <Route path="/request">
           <Request />
         </Route>
+        <ProtectedRoute roles={['dispatcher']} path="/users/:id">
+          <User />
+        </ProtectedRoute>
         <ProtectedRoute roles={['dispatcher']} path="/users">
           <Users />
         </ProtectedRoute>

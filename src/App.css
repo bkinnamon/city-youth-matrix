@@ -23,9 +23,10 @@ img {
 	width: 45%;
 }
 
-input {
+input[type="text"],
+input[type="password:"] {
 	width: 100%;
-	min-width: 200px;
+	/*min-width: 200px;*/
 	padding: 20px;
 	margin: 10px 0;
 	display: inline-block;
