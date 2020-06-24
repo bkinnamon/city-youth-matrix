@@ -122,7 +122,7 @@ async function createEvent(event) {
  * @return {object} The object containing the request results.
  */
 async function updateEvent(id, event) {
-  const data = await callApi('PUT', `/event/${id}`, event);
+  const data = await callApi('PUT', `/events/${id}`, event);
   return data;
 }
 
@@ -132,7 +132,7 @@ async function updateEvent(id, event) {
  * @return {object} The object containing the request results.
  */
 async function deleteEvent(id) {
-  const data = await callApi('DELETE', `/event/${id}`);
+  const data = await callApi('DELETE', `/events/${id}`);
   return data;
 }
 
