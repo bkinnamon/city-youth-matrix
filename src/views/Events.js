@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import API from '../helpers/api'
-import headerLogo from '../CYM_logo_v2.svg'
-import NavBar from '../components/NavBar'
-import Card from './Card'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import API from '../helpers/api';
+import Layout from '../components/Layout';
+import Card from './Card';
 
 class Events extends Component {
   constructor(props) {
@@ -20,33 +20,22 @@ class Events extends Component {
 
   render() {
     return (
-      <div className="event-page" >
+      <Layout>
+        <h2>Upcoming Events</h2>
         <div>
-          <img src={headerLogo} alt="City Youth Matrix logo" className="header-logo" />
+          {this.state.events.map(event =>
+          <Link key={event.id} className="event-link" to={`/events/${event.id}`}>
+            <Card
+              name={event.name}
+              date={event.date}
+              start={event.start}
+              partner={event.partner}
+              end={event.end}
+            />
+          </Link>
+          )}
         </div>
-
-        <NavBar />
-
-        <div className="event-list">
-          <h2>Upcoming Events</h2>
-
-          <div>
-            {this.state.events.map(event =>
-              <Card
-                id={event.id}
-                name={event.name}
-                start={event.start}
-                partner={event.partner}
-                end={event.end}
-              />
-            )}
-          </div>
-
-          <button className="footer-button button-highlight">Events</button>
-          <button className="footer-button">Trips</button>
-          <button className="footer-button">Profile</button>
-        </div>
-      </div>
+      </Layout>
     )
   }
 }

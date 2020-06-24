@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import API from '../helpers/api';
 import logo from '../CYM_logo_v1.svg'
 
@@ -40,6 +40,7 @@ function Request() {
           <div>
             <button type="submit" className="log-in-button">Request Account</button>
           </div>
+          <Link to="/">Login instead</Link>
         </div>
       </form>
     </div>

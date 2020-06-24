@@ -1,36 +1,112 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { setUser } from '../store/actions';
+import API from '../helpers/api';
+import useForm from '../hooks/useForm';
+import Layout from '../components/Layout';
 
-import headerLogo from '../CYM_logo_v2.svg'
-import '../App.css'
+function Event({ user }) {
+  const [error, setError] = useState();
+  const [event, setEvent] = useState();
+  const [editing, setEditing] = useState(false);
 
-function Event({events}) {
-	return (
-		<div className="single-event-page">
-			<div>
-				<img src={headerLogo} alt = "City Youth Matrix logo" className = "header-logo"/>
-				<h4 className="header-button">Go Back</h4>
-			</div>
+  const { id } = useParams();
 
-			<div className="single-event">
-				<div className="single-event-details">
-					<h2>{events[0].name}</h2>
-					<h3>{events[0].date}, {events[0].time}</h3>
-					<p>{events[0].location}</p>
-					<p>{events[0].address}</p>
-				</div>
-					<p>{events[0].description}</p>
-				<div className="trip-request-button-div">
-					<button className="trip-request-button">Trip Request</button>
-				</div>
-			</div>
+  const { handleSubmit, handleChange, formData, setFormData } = useForm(updateEvent);
 
-			<button className="footer-button">Events</button>
-			<button className="footer-button">Trips</button>
-			<button className="footer-button">Profile</button>
-		</div>
+  async function updateEvent() {
+    const data = await API.callApi('PUT', `/events/${id}`, formData);
+    if (data.error) {
+      setError(data.error);
+      return;
+    }
+    setEvent(data.event);
+    setFormData(data.event);
+    setEditing(false);
+  }
 
-		)
-	}
+  useEffect(() => {
+    API.event(id).then(data => {
+      if (data.error) {
+        setError(data.error);
+        return;
+      }
+      setEvent(data.event);
+      setFormData(data.event);
+    });
+  }, [id, setFormData]);
 
+  if (user?.types?.includes('dispatcher') && editing) {
+    return (
+      <Layout>
+        <form onSubmit={handleSubmit}>
+          <label>
+            <div>Name</div>
+            <input type="text" name="name" value={formData.name} onChange={handleChange} />
+          </label>
+          <label>
+            <div>Partner</div>
+            <input type="text" name="partner" value={formData.partner} onChange={handleChange} />
+          </label>
+          <label>
+            <div>Date</div>
+            <input type="text" name="date" value={formData.date} onChange={handleChange} />
+          </label>
+          <div style={{display: 'flex'}}>
+            <label style={{flex: 1}}>
+              <div>Start</div>
+              <input type="text" name="start" value={formData.start} onChange={handleChange} />
+            </label>
+            <label style={{flex: 1}}>
+              <div>End</div>
+              <input type="text" name="start" value={formData.end} onChange={handleChange} />
+            </label>
+          </div>
+          <label>
+            <div>Description</div>
+            <textarea className="textarea" name="description" value={formData.description} onChange={handleChange}></textarea>
+          </label>
+          <button type="submit" className="log-in-button">Save Event</button>
+          <button type="button" className="btn--text full-width" onClick={() => setEditing(false)}>Cancel</button>
+        </form>
+      </Layout>
+    );
+  }
 
-export default Event
+  return (
+    <Layout error={error}>
+      <h2>{event?.name}</h2>
+      {user?.types?.includes('dispatcher') &&
+      <button className="btn--text" onClick={() => setEditing(true)}>Edit</button>}
+      <p>{event?.partner}</p>
+      <p>
+        <strong>{event?.date} </strong>
+        From
+        <strong> {event?.start} </strong>
+        to
+        <strong> {event?.end} </strong>
+      </p>
+      <p>{event?.description}</p>
+      <h3>Registrations</h3>
+      {event?.registrations?.length > 0 && event.registrations.map(reg => (<h4>reg.family</h4>))}
+      {event?.registrations?.length === 0 && <p>There are no registrations.</p>}
+      {user?.types?.includes('dispatcher') &&
+        <button className="log-in-button">Add Registration</button>}
+    </Layout>
+  )
+}
+
+function mapStateToProps(state) {
+  return { user: state.user };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setUser(user) {
+      dispatch(setUser(user));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Event);

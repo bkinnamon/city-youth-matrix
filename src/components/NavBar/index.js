@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import styles from './NavBar.module.css';
 
 function AppBar({ user }) {
-  const showUsersNavLink = user.type?.includes('dispatcher');
+  const showUsersNavLink = user?.types?.includes('dispatcher');
 
   return (
     <nav className={styles.nav}>
