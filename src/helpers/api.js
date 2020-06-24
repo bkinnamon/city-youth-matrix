@@ -1,6 +1,6 @@
 const API_URL = 'https://cym.brettk.dev';
 
-let token = null;
+let token = window.localStorage?.getItem('token') || null;
 
 /**
  * Gets the headers for the API call.
@@ -51,12 +51,39 @@ async function login (username, password) {
 }
 
 /**
+ * Sends a login request with a stored token if one is found.
+ * @return {object} The results from the API.
+ */
+async function tokenLogin() {
+  token = window.localStorage?.getItem('token') || null
+  if (!token) return null;
+  const data = await callApi('GET', '/token');
+  return data;
+}
+
+/**
  * Removes the auth token from storage.
  */
-function logout () {
+function logout() {
   token = null;
   if (!window.localStorage) return;
   window.localStorage.setItem('token', token);
+}
+
+/**
+ * Requests a new user acount.
+ * @param {string} username
+ * @param {string} password
+ * @returns {object} The API response.
+ **/
+async function register(username, password) {
+  const data = await callApi('POST', '/register', {username, password});
+  if (data.error) return data;
+  token = data.token;
+  delete data.token;
+  if (!window.localStorage) return data;
+  window.localStorage.setItem('token', token);
+  return data;
 }
 
 /**
@@ -112,6 +139,8 @@ async function deleteEvent(id) {
 const API = {
   callApi,
   login,
+  tokenLogin,
+  register,
   logout,
   allEvents,
   event,
