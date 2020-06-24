@@ -14,15 +14,14 @@ class Events extends Component {
 
   componentDidMount() {
     API.allEvents().then(data => {
-      this.setState(data);
-    });
+      this.setState(data)
+    })
   }
 
   render() {
     return (
       <Layout>
         <h2>Upcoming Events</h2>
-
         <div>
           {this.state.events.map(event =>
           <Link key={event.id} className="event-link" to={`/events/${event.id}`}>

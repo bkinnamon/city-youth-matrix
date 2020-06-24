@@ -44,15 +44,15 @@ function App({ setUser }) {
 }
 
 function mapStateToProps(state) {
-  return { user: state.user };
+  return { user: state.user }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     setUser(user) {
-      dispatch(setUser(user));
+      dispatch(setUser(user))
     },
-  };
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)
