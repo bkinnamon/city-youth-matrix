@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import API from '../helpers/api';
-import headerLogo from '../CYM_logo_v2.svg'
-import NavBar from '../components/NavBar';
+import Layout from '../components/Layout';
 import UserTile from '../components/UserTile';
 
 function Users() {
@@ -43,47 +42,29 @@ function Users() {
 
   if (error) {
     return (
-      <div className="event-page" >
+      <Layout>
+        <h2>Users</h2>
         <div>
-          <img src={headerLogo} alt="City Youth Matrix logo" className="header-logo" />
+          <p>Loading users ...</p>
         </div>
-
-        <NavBar />
-
-        <p>{error}</p>
-
-        <div className="event-list">
-          <h2>Users</h2>
-          <div>
-            <p>Loading users ...</p>
-          </div>
-        </div>
-      </div>
+      </Layout>
     );
   }
 
   return (
-    <div className="event-page" >
-      <div>
-        <img src={headerLogo} alt="City Youth Matrix logo" className="header-logo" />
+    <Layout>
+      <h2>Users</h2>
+      <div style={{padding: '0 1rem'}}>
+        <h3>Pending</h3>
+        {pending.map(user => <UserTile key={user.id} user={user} />)}
+        <h3>Families</h3>
+        {families.map(user => <UserTile key={user.id} user={user} />)}
+        <h3>Drivers</h3>
+        {drivers.map(user => <UserTile key={user.id} user={user} />)}
+        <h3>Dispatchers</h3>
+        {dispatchers.map(user => <UserTile key={user.id} user={user} />)}
       </div>
-
-      <NavBar />
-
-      <div className="event-list">
-        <h2>Users</h2>
-        <div style={{padding: '0 1rem'}}>
-          <h3>Pending</h3>
-          {pending.map(user => <UserTile key={user.id} user={user} />)}
-          <h3>Families</h3>
-          {families.map(user => <UserTile key={user.id} user={user} />)}
-          <h3>Drivers</h3>
-          {drivers.map(user => <UserTile key={user.id} user={user} />)}
-          <h3>Dispatchers</h3>
-          {dispatchers.map(user => <UserTile key={user.id} user={user} />)}
-        </div>
-      </div>
-    </div>
+    </Layout>
   );
 }
 

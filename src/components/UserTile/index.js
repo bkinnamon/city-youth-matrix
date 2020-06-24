@@ -5,7 +5,7 @@ import styles from './UserTile.module.css';
 function UserTile({ user }) {
   return (
     <Link className={styles.tile} to={`/users/${user.id}`}>
-      {user.username}
+      {user.name} ({user.username})
     </Link>
   );
 }

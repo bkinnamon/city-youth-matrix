@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setUser } from './store/actions';
 import ProtectedRoute from './components/ProtectedRoute';
-import ApiExample from './ApiExample'
+import Event from './views/Event';
 import Request from './views/Request';
 import Login from './views/Login'
 import Logout from './views/Logout'
@@ -18,14 +18,11 @@ function App({ setUser }) {
     <Router className="App">
       <Switch>
         <Route path="/events/:id">
-          <ApiExample />
+          <Event />
         </Route>
         <ProtectedRoute roles={['dispatcher', 'driver', 'family']} path="/events">
           <Events />
         </ProtectedRoute>
-        <Route path="/api">
-          <ApiExample />
-        </Route>
         <Route path="/logout">
           <Logout />
         </Route>
