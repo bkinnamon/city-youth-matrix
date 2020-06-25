@@ -68,10 +68,15 @@ function Event({ user }) {
       </p>
       <p>{event?.description}</p>
       <h3>Registrations</h3>
-      {event?.registrations?.length > 0 && event.registrations.map(reg => (<h4>reg.family</h4>))}
+      {event?.registrations?.length > 0 && event.registrations.map(reg => (<h4>{reg.family}</h4>))}
       {event?.registrations?.length === 0 && <p>There are no registrations.</p>}
       {user?.types?.includes('dispatcher') &&
-        <button className="log-in-button" onClick={() => history.push("/events/new-reg")}>Add Registration</button>}
+        <button
+      className="log-in-button"
+      onClick={() => history.push(`/events/${id}/new-reg`)}
+        >
+      Add Registration
+        </button>}
     </Layout>
   )
 }

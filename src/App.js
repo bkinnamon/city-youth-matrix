@@ -19,7 +19,7 @@ function App({ setUser }) {
   return (
     <Router className="App">
       <Switch>
-        <ProtectedRoute roles={['dispatcher']} path="/events/new-reg">
+        <ProtectedRoute roles={['dispatcher']} path="/events/:id/new-reg">
           <NewRegistration />
         </ProtectedRoute>
         <ProtectedRoute roles={['dispatcher']} path="/events/new">
