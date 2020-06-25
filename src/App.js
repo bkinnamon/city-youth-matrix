@@ -10,6 +10,8 @@ import Logout from './views/Logout'
 import Events from './views/Events'
 import Users from './views/Users';
 import User from './views/User';
+import NewEvent from './views/NewEvent';
+import NewRegistration from './views/NewRegistration';
 
 import './App.css'
 
@@ -17,9 +19,15 @@ function App({ setUser }) {
   return (
     <Router className="App">
       <Switch>
-        <Route path="/events/:id">
+        <ProtectedRoute roles={['dispatcher']} path="/events/:id/new-reg">
+          <NewRegistration />
+        </ProtectedRoute>
+        <ProtectedRoute roles={['dispatcher']} path="/events/new">
+          <NewEvent />
+        </ProtectedRoute>
+        <ProtectedRoute roles={['dispatcher']} path="/events/:id">
           <Event />
-        </Route>
+        </ProtectedRoute>
         <ProtectedRoute roles={['dispatcher', 'driver', 'family']} path="/events">
           <Events />
         </ProtectedRoute>
